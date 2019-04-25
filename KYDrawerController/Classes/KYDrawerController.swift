@@ -36,11 +36,11 @@ open class KYDrawerController: UIViewController, UIGestureRecognizerDelegate {
     // MARK: - Types
     /**************************************************************************/
     
-    @objc public enum DrawerDirection: Int {
+    @objc(KYDrawerControllerDrawerDirection) public enum DrawerDirection: Int {
         case left, right
     }
     
-    @objc public enum DrawerState: Int {
+    @objc(KYDrawerControllerDrawerState) public enum DrawerState: Int {
         case opened, closed
     }
 
@@ -109,9 +109,9 @@ open class KYDrawerController: UIViewController, UIGestureRecognizerDelegate {
         return gesture
     }()
     
-    public weak var delegate: KYDrawerControllerDelegate?
+    @objc public weak var delegate: KYDrawerControllerDelegate?
     
-    public var drawerDirection: DrawerDirection = .left {
+    @objc public var drawerDirection: DrawerDirection = .left {
         didSet {
             switch drawerDirection {
             case .left:  screenEdgePanGesture.edges = .left
@@ -122,7 +122,7 @@ open class KYDrawerController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    public var drawerState: DrawerState {
+    @objc public var drawerState: DrawerState {
         get { return _containerView.isHidden ? .closed : .opened }
         set { setDrawerState(newValue, animated: false) }
     }
@@ -140,7 +140,7 @@ open class KYDrawerController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
 
-    public var mainViewController: UIViewController! {
+    @objc public var mainViewController: UIViewController! {
         didSet {
             let isVisible = (drawerState == .closed)
             
@@ -192,7 +192,7 @@ open class KYDrawerController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    public var drawerViewController : UIViewController? {
+    @objc public var drawerViewController : UIViewController? {
         didSet {
             let isVisible = (drawerState == .opened)
             
@@ -279,7 +279,7 @@ open class KYDrawerController: UIViewController, UIGestureRecognizerDelegate {
     // MARK: - initialize
     /**************************************************************************/
     
-    public init(drawerDirection: DrawerDirection, drawerWidth: CGFloat) {
+    @objc public init(drawerDirection: DrawerDirection, drawerWidth: CGFloat) {
         super.init(nibName: nil, bundle: nil)
         self.drawerDirection = drawerDirection
         self.drawerWidth     = drawerWidth
@@ -361,7 +361,7 @@ open class KYDrawerController: UIViewController, UIGestureRecognizerDelegate {
     // MARK: - Public Method
     /**************************************************************************/
     
-    public func setDrawerState(_ state: DrawerState, animated: Bool) {
+    @objc public func setDrawerState(_ state: DrawerState, animated: Bool) {
         delegate?.drawerController?(self, willChangeState: state)
 
         _containerView.isHidden = false

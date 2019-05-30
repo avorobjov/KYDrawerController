@@ -76,9 +76,9 @@ open class KYDrawerController: UIViewController, UIGestureRecognizerDelegate {
     /// if the first parameter is `false`. Returns `nil` if appearance transition is not in progress.
     private var _isAppearing: Bool?
 
-    public var screenEdgePanGestureEnabled = true
+    @objc public var screenEdgePanGestureEnabled = true
     
-    public private(set) lazy var screenEdgePanGesture: UIScreenEdgePanGestureRecognizer = {
+    @objc public private(set) lazy var screenEdgePanGesture: UIScreenEdgePanGestureRecognizer = {
         let gesture = UIScreenEdgePanGestureRecognizer(
             target: self,
             action: #selector(KYDrawerController.handlePanGesture(_:))
@@ -91,7 +91,7 @@ open class KYDrawerController: UIViewController, UIGestureRecognizerDelegate {
         return gesture
     }()
     
-    public private(set) lazy var panGesture: UIPanGestureRecognizer = {
+    @objc public private(set) lazy var panGesture: UIPanGestureRecognizer = {
         let gesture = UIPanGestureRecognizer(
             target: self,
             action: #selector(KYDrawerController.handlePanGesture(_:))
@@ -100,7 +100,7 @@ open class KYDrawerController: UIViewController, UIGestureRecognizerDelegate {
         return gesture
     }()
 
-    public private(set) lazy var containerViewTapGesture: UITapGestureRecognizer = {
+    @objc public private(set) lazy var containerViewTapGesture: UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer(
             target: self,
             action: #selector(KYDrawerController.didtapContainerView(_:))
